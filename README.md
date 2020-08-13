@@ -120,3 +120,22 @@ You can view these outputs again by running:
 ```shell
 $ terraform output
 ```
+
+Use the AWS CLI update-kubeconfig command to create or update your kubeconfig for your cluster.
+
+```shell
+$ aws eks --region region-code update-kubeconfig --name cluster_name
+```
+Get the region-code and cluster_name from the output of the previous step.
+
+Then install Ansible and openshift using pip3
+
+```shell
+$ pip3 install openshift
+$ pip3 install ansible --user
+```
+Run the Deployments Playbook to deploy ( Jenkins, Nexus and Sonarqube) on the created eks cluster
+
+```shell
+$ ansible-playbook deploymentsPlaybook.yaml
+```
