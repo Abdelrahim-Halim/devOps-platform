@@ -3,6 +3,10 @@
 This repo is a DevOps platform repo to [Build DevOps platform on Aws](https://github.com/Abdelrahim-Halim/devOps-platform/edit/master/README.md), containing
 
 1) Terraform configuration files to provision an EKS cluster on AWS.
+
+ => The platform architecture 
+ ![alt text](https://learn.hashicorp.com/img/terraform/eks/overview.png)
+
 2) Implementation the needed DevOps tools to create CICD pipeline (Jenkins, SonarQube,
 Nexus, etc. ...) using ansible or any other configuration management tool on the created
 k8s cluster.
@@ -179,4 +183,3 @@ $ kubectl get po -n devops
 $ kubectl exec jenkins-deployment-759b989cf4-cjcl6 -n devops cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
-![alt text](https://learn.hashicorp.com/img/terraform/eks/overview.png)
