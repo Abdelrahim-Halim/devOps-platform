@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: sonarqube
+ namespace: devops
+ labels:
+    app: sonarqube
+spec:
+  selector:
+    matchLabels:
+     app: sonarqube
+  replicas: 3
+  template:
+    metadata:
+      name: sonarqube
+      namespace: sonarqube
+      labels:
+        app: sonarqube
+    spec:
+      containers:
+      - name: sonarqube
+        image: sonarqube:latest
+        ports:
+          - containerPort: 9000
+            protocol: TCP
+    
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: sonarqube
+    namespace: devops
+    labels:
+        app: sonarqube
+spec:
+    selector: 
+       app: sonarqube
+    ports:
+      - name: sonar
+        port: 80
+        protocol: TCP
+        targetPort: 9000
+    type: LoadBalancer
