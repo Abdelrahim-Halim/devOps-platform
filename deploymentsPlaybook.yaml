@@ -1,0 +1,22 @@
+---
+    - hosts: localhost
+      tasks:
+        - name: deploy jenkins
+          k8s:
+            state: present
+            kubeconfig: /home/halim/.kube/config
+            src: ./kubernetes-Deployments/jenkins-deployment.yaml
+        
+        - name: deploy nexus
+          k8s:
+            state: present
+            kubeconfig: /home/halim/.kube/config
+            src: ./kubernetes-Deployments/nexus-deployment.yml
+        
+        - name: deploy sonarqube
+          k8s:
+            state: present
+            kubeconfig: ~/.kube/config
+            src: ./kubernetes-Deployments/sonarqube-deployment.yaml
+            
+            
