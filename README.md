@@ -138,4 +138,45 @@ Run the Deployments Playbook to deploy ( Jenkins, Nexus and Sonarqube) on the cr
 
 ```shell
 $ ansible-playbook deploymentsPlaybook.yaml
+
+[WARNING]: provided hosts list is empty, only localhost is available. Note that
+the implicit localhost does not match 'all'
+
+PLAY [localhost] ***************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [deploy jenkins] **********************************************************
+ok: [localhost]
+
+TASK [deploy nexus] ************************************************************
+ok: [localhost]
+
+TASK [deploy sonarqube] ********************************************************
+changed: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0 
+
 ```
+
+Configure Jenkins to create CI/CD pipline
+
+```shell
+$ kubectl get svc --namespace devops
+
+NAME        TYPE           CLUSTER-IP       EXTERNAL-IP                                                              PORT(S)        AGE
+jenkins     LoadBalancer   172.20.253.238   a25af165b92664db1a3a7455248e2dd6-951940550.us-east-2.elb.amazonaws.com   80:32544/TCP   4m32s
+nexus       LoadBalancer   172.20.140.113   a61ac66d8c7064a50906972e0c802668-260146710.us-east-2.elb.amazonaws.com   80:30362/TCP   3m26s
+sonarqube   LoadBalancer   172.20.95.231    a2ac338b8d5d7499caed546e0d35f28c-345267086.us-east-2.elb.amazonaws.com   80:30305/TCP   2m21s
+
+```
+Get InitialAdminPassword from the running jenkins pod
+
+```shell
+$ kubectl get po -n devops
+$ kubectl exec jenkins-deployment-759b989cf4-cjcl6 -n devops cat /var/jenkins_home/secrets/initialAdminPassword
+```
+
+![alt text](https://learn.hashicorp.com/img/terraform/eks/overview.png)

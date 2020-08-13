@@ -11,12 +11,12 @@
           k8s:
             state: present
             kubeconfig: /home/halim/.kube/config
-            src: ./kubernetes-Deployments/nexus-deployment.yml
+            src: ./kubernetes-Deployments/nexus-deployment.yaml
         
         - name: deploy sonarqube
           k8s:
             state: present
             kubeconfig: ~/.kube/config
-            src: ./kubernetes-Deployments/sonarqube-deployment.yaml
+            src: ./kubernetes-Deployments/sonarqube-deployments.yaml
             
             

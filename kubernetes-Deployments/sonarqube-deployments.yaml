@@ -12,8 +12,6 @@ spec:
   replicas: 3
   template:
     metadata:
-      name: sonarqube
-      namespace: sonarqube
       labels:
         app: sonarqube
     spec:
@@ -36,8 +34,7 @@ spec:
     selector: 
        app: sonarqube
     ports:
-      - name: sonar
-        port: 80
+      - port: 80
         protocol: TCP
         targetPort: 9000
     type: LoadBalancer
